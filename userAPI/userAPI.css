@@ -1,0 +1,20 @@
+body {
+  background-color: green;
+}
+
+.photo_entry {
+  border: 1px solid white;
+}
+
+div {
+  text-align: center;
+  margin: 5px 20px;
+}
+.div_button {
+  display: flex;
+  justify-content: center;
+}
+button {
+  width: 10%;
+  font-size: 120%;
+}
