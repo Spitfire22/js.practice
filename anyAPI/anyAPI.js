@@ -16,7 +16,7 @@ let city_name = Portland
 
 loadWeather()
 function loadWeather() {
-    http_get("api.openweathermap.org/data/2.5/weather?q=Portland" + page, function (data) {
+    http_get("api.openweathermap.org/data/2.5/weather?q=" + page, function (data) {
         console.log(data)
     });
 }
