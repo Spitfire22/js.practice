@@ -12,10 +12,11 @@ function http_get(url, success) {
   xhttp.send();
 }
 
-
+let city_name = Portland
 
 loadWeather()
 function loadWeather() {
-    http_get("https://reqres.in/api/users?page=" + page, function (data) {
+    http_get("api.openweathermap.org/data/2.5/weather?q=Portland" + page, function (data) {
         console.log(data)
-
+    });
+}
