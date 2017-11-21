@@ -7,22 +7,26 @@ function http_get(url, success) {
       let data = JSON.parse(xhttp.responseText);
       success(data);
     }
-  }
-  xhttp.open("GET", url)
+  };
+  xhttp.open("GET", url);
   xhttp.send();
 }
 
 let photo_list = document.querySelector('#photo_list');
-let btn_pg1 = document.querySelector('#btn_pg1');
-let btn_pg2 = document.querySelector('#btn_pg2');
-let btn_pg3 = document.querySelector('#btn_pg3');
-let btn_pg4 = document.querySelector('#btn_pg4');
+// let btn_pg1 = document.querySelector('#btn_pg1');
+// let btn_pg2 = document.querySelector('#btn_pg2');
+// let btn_pg3 = document.querySelector('#btn_pg3');
+// let btn_pg4 = document.querySelector('#btn_pg4');
+
+let div_buttons = document.querySelector('#div_buttons');
 
 let page = 1;
-pageload()
+pageload();
 function pageload() {
+
     http_get("https://reqres.in/api/users?page=" + page, function (data) {
-        console.log(data)
+        photo_list.innerHTML = '';
+        console.log(data);
         for (let i = 0; i < data.data.length; ++i) {
             let first_name = data.data[i].first_name;
             let last_name = data.data[i].last_name;
@@ -38,22 +42,36 @@ function pageload() {
             outer_div.appendChild(img);
             photo_list.appendChild(outer_div);
         }
-        btn_pg1.onclick = function() {
-            page = this.innerText;
-            pageload()
+
+
+        div_buttons.innerHTML = '';
+        for (let i=0; i<data.total_pages; ++i) {
+            let page_bt = document.createElement('button');
+            page_bt.innerText = i + 1;
+            page_bt.onclick = function() {
+                page = this.innerText;
+                pageload();
+            };
+            div_buttons.appendChild(page_bt);
+
         }
-        btn_pg2.onclick = function() {
-            page = this.innerText;
-            pageload()
-        }
-        btn_pg3.onclick = function() {
-            page = this.innerText;
-            pageload()
-        }
-        btn_pg4.onclick = function() {
-            page = this.innerText;
-            pageload()
-        }
+
+        // btn_pg1.onclick = function() {
+        //     page = this.innerText;
+        //     pageload()
+        // }
+        // btn_pg2.onclick = function() {
+        //     page = this.innerText;
+        //     pageload()
+        // }
+        // btn_pg3.onclick = function() {
+        //     page = this.innerText;
+        //     pageload()
+        // }
+        // btn_pg4.onclick = function() {
+        //     page = this.innerText;
+        //     pageload()
+        // }
     });
 }
 //What I am to do now is make the pages change the api page request.
